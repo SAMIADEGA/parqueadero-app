@@ -1,0 +1,42 @@
+package co.edu.iudigital.parqueadero.parqueaderoapp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import co.edu.iudigital.parqueadero.parqueaderoapp.domain.Celda;
+import co.edu.iudigital.parqueadero.parqueaderoapp.services.CeldaService;
+
+@RestController
+@RequestMapping("/celdas")
+@CrossOrigin("*")
+public class CeldaController {
+
+    @Autowired
+    private CeldaService celdaService;
+
+    @PostMapping("/registro")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registroCelda(@RequestBody Celda celda) {
+        celdaService.registrarCelda(celda);
+    }
+
+    @GetMapping("/listado")
+    public List<Celda> obtenerListadoCeldas() {
+        return celdaService.obtenerListadoCeldas();
+    }
+
+    @PutMapping("/asignar-vehiculo/{idCelda}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void asignarVehiculo(@PathVariable("idCelda") Long idCelda, @RequestParam Long idVehiculo) {
+        celdaService.asignarVehiculo(idCelda, idVehiculo);
+    }
+
+    @PutMapping("/liberar-celda/{idCelda}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void liberarCelda(@PathVariable("idCelda") Long idCelda) {
+        celdaService.liberarCelda(idCelda);
+    }
+}
