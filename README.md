@@ -1,4 +1,4 @@
-ackage co.edu.iudigital.parqueadero.parqueaderoapp.controller;
+package co.edu.iudigital.parqueadero.parqueaderoapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
